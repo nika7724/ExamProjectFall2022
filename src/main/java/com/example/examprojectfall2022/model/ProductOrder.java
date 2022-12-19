@@ -28,8 +28,10 @@ public class ProductOrder {
     @JoinColumn(name = "delivery_id", foreignKey = @ForeignKey(name = "fk_delivery_id"), referencedColumnName = "id")
     private Delivery delivery;
 
-    public ProductOrder(int quantity) {
+    public ProductOrder(int quantity, Product product, Delivery delivery) {
         this.quantity = quantity;
+        this.product = product;
+        this.delivery = delivery;
     }
 
 }

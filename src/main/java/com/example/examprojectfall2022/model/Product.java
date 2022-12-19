@@ -20,7 +20,7 @@ public class Product {
     private Long id;
 
     @Column(columnDefinition = "VARCHAR(30) NOT NULL")
-    private String name;
+    private String productName;
     @Column
     private double price;
     @Column
@@ -32,8 +32,8 @@ public class Product {
         Set<ProductOrder> productOrder = new HashSet<>();
 
 
-    public Product(Long id, String name, double price, double weight) {
-        this.name = name;
+    public Product(String productName, double price, double weight) {
+        this.productName = productName;
         this.price = price;
         this.weight = weight;
     }
