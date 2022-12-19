@@ -31,11 +31,16 @@ public class Product {
         @JsonBackReference
         Set<ProductOrder> productOrder = new HashSet<>();
 
+    @ManyToOne
+    @JoinColumn(name = "product_description", foreignKey = @ForeignKey(name = "fk_product_description"), referencedColumnName = "id")
+    private ProductDescription productDescription;
 
-    public Product(String productName, double price, double weight) {
+
+    public Product(String productName, double price, double weight, ProductDescription productDescription) {
         this.productName = productName;
         this.price = price;
         this.weight = weight;
+        this.productDescription = productDescription;
     }
 
 }

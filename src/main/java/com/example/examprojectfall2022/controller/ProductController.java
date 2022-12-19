@@ -2,6 +2,7 @@ package com.example.examprojectfall2022.controller;
 
 import com.example.examprojectfall2022.model.Product;
 import com.example.examprojectfall2022.service.ProductService;
+import jakarta.websocket.server.PathParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -35,8 +36,8 @@ public class ProductController {
 
     //create product
     @PostMapping("/product")
-    public ResponseEntity<Product> createProduct(@RequestBody Product product) {
-        Product newProduct = productService.createProduct(product);
+    public ResponseEntity<Product> createProduct(@RequestBody Product product, @PathParam("productDescriptionId")Long productDescriptionId) {
+        Product newProduct = productService.createProduct(product, productDescriptionId);
         return new ResponseEntity<>(newProduct, HttpStatus.CREATED);
     }
 

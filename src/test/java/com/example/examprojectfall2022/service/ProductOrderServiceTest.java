@@ -1,8 +1,6 @@
 package com.example.examprojectfall2022.service;
 
-import com.example.examprojectfall2022.model.Delivery;
-import com.example.examprojectfall2022.model.Product;
-import com.example.examprojectfall2022.model.ProductOrder;
+import com.example.examprojectfall2022.model.*;
 import com.example.examprojectfall2022.repository.ProductOrderRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -40,9 +38,11 @@ class ProductOrderServiceTest {
     void setUp() {
 productOrderService = new ProductOrderService(productOrderRepository,
         productService, deliveryService);
-        Product product = new Product("onion", 15, 500);
-        Delivery delivery = new Delivery(LocalDate.of(2022,12,25),
-                "warehouse1", "CopenhagenE");
+        ProductDescription productDescription1 = new ProductDescription("Vegetable");
+        Product product = new Product("onion", 15, 500, productDescription1);
+        Warehouse warehouse1 = new Warehouse("SounthWarehouse");
+        Destination destination1 = new Destination("Nika Hansen", "RobertJacobsensVej,78");
+        Delivery delivery = new Delivery(LocalDate.of(2022,12,25), warehouse1, destination1);
         productOrder = new ProductOrder(3, product, delivery);
     }
 

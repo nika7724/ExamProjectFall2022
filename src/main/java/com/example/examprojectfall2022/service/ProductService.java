@@ -1,6 +1,7 @@
 package com.example.examprojectfall2022.service;
 
 import com.example.examprojectfall2022.model.Product;
+import com.example.examprojectfall2022.model.ProductDescription;
 import com.example.examprojectfall2022.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,11 +12,15 @@ import java.util.List;
 public class ProductService {
 
     private final ProductRepository productRepository;
+    private final ProductDescriptionService productDescriptionService;
+
 
     //constructor injection
     @Autowired
-    public ProductService(final ProductRepository productRepository) {
+    public ProductService(final ProductRepository productRepository,
+                          final ProductDescriptionService productDescriptionService) {
         this.productRepository = productRepository;
+        this.productDescriptionService = productDescriptionService;
     }
 
     //get all Product
@@ -28,8 +33,15 @@ public class ProductService {
         return productRepository.findById(id).orElse(null);
     }
 
-    //create product
+    /*//create product
     public Product createProduct(Product product) {
+        return productRepository.save(product);
+    }*/
+
+    public Product createProduct(Product product, Long productDescriptionId) {
+        ProductDescription productDescriptioion = productDescriptionService.getProductDescriptionById
+                (productDescriptionId);
+        product.setProductDescription(productDescriptioion);
         return productRepository.save(product);
     }
 

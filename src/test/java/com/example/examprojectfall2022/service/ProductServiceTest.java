@@ -1,6 +1,8 @@
 package com.example.examprojectfall2022.service;
 
 import com.example.examprojectfall2022.model.Product;
+import com.example.examprojectfall2022.model.ProductDescription;
+import com.example.examprojectfall2022.repository.ProductDescriptionRespository;
 import com.example.examprojectfall2022.repository.ProductRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -25,14 +27,20 @@ class ProductServiceTest {
     private ProductService productService;
     @Mock
     private ProductRepository productRepository;
+    @Mock
+    private ProductDescriptionService productDescriptionService;
+    @Mock
+    private ProductDescriptionRespository productDescriptionRespository;
 
     private Long id;
     private Product product;
+    private Long productDescriptionId;
 
     @BeforeEach
     void setUp() {
-        productService = new ProductService(productRepository);
-        product = new Product("Onion", 15, 500);
+        productService = new ProductService(productRepository, productDescriptionService);
+        ProductDescription productDescription1 = new ProductDescription("Vegetable");
+        product = new Product("Onion", 15, 500, productDescription1);
     }
 
     @Test
@@ -49,7 +57,7 @@ class ProductServiceTest {
 
     @Test
     void createProduct() {
-        productService.createProduct(product);
+        productService.createProduct(product, productDescriptionId);
         ArgumentCaptor<Product> ProductArgumentCaptor = ArgumentCaptor.forClass(Product.class);
         verify(productRepository).save(ProductArgumentCaptor.capture());
         Product capturedProduct = ProductArgumentCaptor.getValue();
@@ -68,6 +76,7 @@ class ProductServiceTest {
         product.setProductName("onion");
         product.setPrice(15);
         product.setWeight(500);
+
 
         Mockito.when(productRepository.findById(id)).thenReturn(Optional.ofNullable(product));
         Mockito.when(productRepository.save(product)).thenReturn(product);

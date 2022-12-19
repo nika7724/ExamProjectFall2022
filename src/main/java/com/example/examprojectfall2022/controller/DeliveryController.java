@@ -3,6 +3,7 @@ package com.example.examprojectfall2022.controller;
 
 import com.example.examprojectfall2022.model.Delivery;
 import com.example.examprojectfall2022.service.DeliveryService;
+import jakarta.websocket.server.PathParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -36,8 +37,9 @@ public DeliveryController(final DeliveryService deliveryService) {
 
 //create new delivery
     @PostMapping("/delivery")
-    public ResponseEntity<Delivery> createDelivery(@RequestBody Delivery delivery) {
-    Delivery newDelivery = deliveryService.createDelivery(delivery);
+    public ResponseEntity<Delivery> createDelivery(@RequestBody Delivery delivery,
+                                                   @PathParam("warehouseId")Long warehouseId, @PathParam("destinationId") Long destinationId) {
+    Delivery newDelivery = deliveryService.createDelivery(delivery, warehouseId, destinationId);
     return new ResponseEntity<>(newDelivery, HttpStatus.CREATED);
     }
 

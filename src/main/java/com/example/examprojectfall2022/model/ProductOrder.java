@@ -21,11 +21,11 @@ public class ProductOrder {
 
 
     @ManyToOne
-    @JoinColumn(name = "product_id", foreignKey = @ForeignKey(name = "fk_product_id"), referencedColumnName = "id")
+    @JoinColumn(name = "product", foreignKey = @ForeignKey(name = "fk_product"), referencedColumnName = "id")
     private Product product;
 
     @ManyToOne
-    @JoinColumn(name = "delivery_id", foreignKey = @ForeignKey(name = "fk_delivery_id"), referencedColumnName = "id")
+    @JoinColumn(name = "delivery", foreignKey = @ForeignKey(name = "fk_delivery"), referencedColumnName = "id")
     private Delivery delivery;
 
     public ProductOrder(int quantity, Product product, Delivery delivery) {

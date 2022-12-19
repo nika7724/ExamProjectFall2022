@@ -24,21 +24,24 @@ public class Delivery {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate deliveryDate;
 
-    @Column(columnDefinition = "VARCHAR(30) NOT NULL")
-    private String warehouse;
-
-    @Column(columnDefinition = "VARCHAR(30) NOT NULL")
-    private String destination;
-
-    @OneToMany
+      @OneToMany
             (mappedBy = "delivery", cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
     @JsonBackReference
     Set<ProductOrder> productOrder = new HashSet<>();
 
-    public Delivery(LocalDate deliveryDate, String warehouse, String destination) {
+    @ManyToOne
+    @JoinColumn(name = "warehouse", foreignKey = @ForeignKey(name = "fk_warehouse"), referencedColumnName = "id")
+    private Warehouse warehouse;
+
+    @ManyToOne
+    @JoinColumn(name = "destination", foreignKey = @ForeignKey(name = "fk_destination"), referencedColumnName = "id")
+    private Destination destination;
+
+    public Delivery(LocalDate deliveryDate, Warehouse warehouse, Destination destination) {
         this.deliveryDate = deliveryDate;
         this.warehouse = warehouse;
         this.destination = destination;
+
     }
 
 }
