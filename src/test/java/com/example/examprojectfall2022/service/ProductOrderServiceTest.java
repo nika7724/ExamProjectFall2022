@@ -48,7 +48,7 @@ productOrderService = new ProductOrderService(productOrderRepository,
 
     @Test
     void getAllProductOrder() {
-        productOrderService.getAllProductOrder();
+        productOrderService.getAllProductOrders();
         Mockito.verify(productOrderRepository).findAll();
     }
 

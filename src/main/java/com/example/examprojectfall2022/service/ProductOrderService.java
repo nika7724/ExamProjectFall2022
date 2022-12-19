@@ -24,7 +24,8 @@ public class ProductOrderService {
     }
 
     //get all ProductOrder
-    List<ProductOrder> getAllProductOrder() {
+    public List<ProductOrder> getAllProductOrders() {
+
         return productOrderRepository.findAll();
     }
 

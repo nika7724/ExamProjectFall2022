@@ -37,7 +37,7 @@ class ProductServiceTest {
 
     @Test
     void getAllProduct() {
-        productService.getAllProduct();
+        productService.getAllProducts();
         Mockito.verify(productRepository).findAll();
     }
 

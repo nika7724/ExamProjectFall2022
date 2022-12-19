@@ -38,7 +38,7 @@ class DeliveryServiceTest {
 
     @Test
     void getAllDelivery() {
-        deliveryService.getAllDelivery();
+        deliveryService.getAllDeliveries();
         Mockito.verify(deliveryRepository).findAll();
     }
 

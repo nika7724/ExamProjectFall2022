@@ -19,7 +19,7 @@ public class DeliveryService {
     }
 
     //find all delivery
-    public List<Delivery> getAllDelivery() {
+    public List<Delivery> getAllDeliveries() {
         return deliveryRepository.findAll();
     }
 
