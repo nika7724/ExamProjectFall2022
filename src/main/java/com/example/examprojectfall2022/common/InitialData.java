@@ -50,8 +50,8 @@ public void run(String... args) throws Exception {
 
     //create warehouse
     Warehouse warehouse1 = new Warehouse("warehouse1");
-    Warehouse warehouse2 = new Warehouse("warehouse1");
-    Warehouse warehouse3 = new Warehouse("warehouse1");
+    Warehouse warehouse2 = new Warehouse("warehouse2");
+    Warehouse warehouse3 = new Warehouse("warehouse3");
     warehouseRepository.save(warehouse1);
     warehouseRepository.save(warehouse2);
     warehouseRepository.save(warehouse3);

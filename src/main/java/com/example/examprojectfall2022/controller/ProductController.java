@@ -1,6 +1,9 @@
 package com.example.examprojectfall2022.controller;
 
 import com.example.examprojectfall2022.model.Product;
+import com.example.examprojectfall2022.model.ProductDescription;
+import com.example.examprojectfall2022.repository.ProductDescriptionRespository;
+import com.example.examprojectfall2022.repository.ProductRepository;
 import com.example.examprojectfall2022.service.ProductService;
 import jakarta.websocket.server.PathParam;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,10 +18,16 @@ import java.util.List;
 public class ProductController {
 
     private final ProductService productService;
+    private final ProductRepository productRepository;
+    private final ProductDescriptionRespository productDescriptionRespository;
 
     @Autowired
-    public ProductController(final ProductService productService) {
+    public ProductController(final ProductService productService,
+                             final ProductRepository productRepository,
+                             ProductDescriptionRespository productDescriptionRespository) {
         this.productService = productService;
+        this.productRepository = productRepository;
+        this.productDescriptionRespository = productDescriptionRespository;
     }
 
     //return all products
@@ -55,5 +64,10 @@ public class ProductController {
     return new ResponseEntity<>(productService.editProduct(id, newProduct), HttpStatus.OK);
     }
 
+    //for drop-down menu
+    @PostMapping("/category/{id}")
+    public List<Product> getProductDescription(@PathVariable("id")ProductDescription productDescription){
+        return productRepository.findAllByProductDescription(productDescriptionRespository.findById(productDescription.getId()).get());
+    }
 
 }

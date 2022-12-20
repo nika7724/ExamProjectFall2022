@@ -20,9 +20,14 @@ public class ProductDescriptionService {
         return productDescriptionRespository.findAll();
     }
     //findProductDescriptionById
-
     public ProductDescription getProductDescriptionById(Long id) {
         return productDescriptionRespository.findById(id).orElse(null);
     }
+
+    //creat Product description
+    public ProductDescription createProductDescription(ProductDescription productDescription) {
+        return productDescriptionRespository.save(productDescription);
+    }
+
 
 }

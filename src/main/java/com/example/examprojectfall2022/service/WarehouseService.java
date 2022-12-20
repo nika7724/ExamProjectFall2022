@@ -1,5 +1,6 @@
 package com.example.examprojectfall2022.service;
 
+import com.example.examprojectfall2022.model.Product;
 import com.example.examprojectfall2022.model.Warehouse;
 import com.example.examprojectfall2022.repository.WarehouseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,4 +27,20 @@ public class WarehouseService {
         return warehouseRepository.findById(id).orElse(null);
     }
 
+     //create product
+    public Warehouse createWharehouse(Warehouse warehouse) {
+        return warehouseRepository.save(warehouse);
+    }
+
+    public void deleteWareHouseById(Long id) {
+        warehouseRepository.deleteById(id);
+    }
+
+    public Warehouse editWareHouse(Long id, Warehouse newWarehouse) {
+        if (warehouseRepository.findById(id).isEmpty())
+            return null;
+        {
+            return warehouseRepository.save(newWarehouse);
+        }
+    }
 }
