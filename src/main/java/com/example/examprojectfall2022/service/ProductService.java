@@ -57,5 +57,18 @@ public class ProductService {
         {
             return productRepository.save(newProduct);
         }
+
+    }
+
+    //find customer by keyword
+    public Product search(String productName) {
+        try{
+            if (productName != null) {
+                return productRepository.findByProductName(productName);
+            }
+        }catch (Exception e){
+            System.out.println("not found the key"+ e);
+        }
+        return null;
     }
 }

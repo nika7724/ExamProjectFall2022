@@ -36,7 +36,7 @@ public class ProductController {
         return productService.getAllProducts();
     }
 
-    //find product by Id
+    //find product by
     @GetMapping("/product/{id}")
     public ResponseEntity<Product> getProductById(@PathVariable("id") Long id) {
         Product product = productService.getProductById(id);
@@ -68,6 +68,12 @@ public class ProductController {
     @PostMapping("/category/{id}")
     public List<Product> getProductDescription(@PathVariable("id")ProductDescription productDescription){
         return productRepository.findAllByProductDescription(productDescriptionRespository.findById(productDescription.getId()).get());
+    }
+    //find by keyword and put it in list of products
+    @GetMapping("/products/search/{productName}")
+    public ResponseEntity<Product> search(@PathVariable("productName") String productName){
+        Product product = productService.search(productName);
+        return new ResponseEntity<>(product, HttpStatus.OK);
     }
 
 }
